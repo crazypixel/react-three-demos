@@ -13,6 +13,12 @@ export default class Demo {
   constructor({ scene }) {
     this.scene = scene;
 
+    this.sensitivity = 30;
+
+    setTimeout(() => {
+      this.sensitivity = 30;
+    }, 5000);
+
     this.load();
   }
 
@@ -142,8 +148,8 @@ export default class Demo {
 
           const average = values / array.length;
 
-          if (average > 15) {
-            this.trigger(average / 4);
+          if (average > this.sensitivity) {
+            this.trigger(average / 3);
           }
         }
       }
