@@ -37,14 +37,15 @@ class App extends Component {
   };
 
   demoInterface() {
-    const { demoId } = this.state;
+    const { demoId, isLoading } = this.state;
 
     switch (demoId) {
       case 'demo-01':
-        return <Colors scene={this.scene} />;
+        return <Colors scene={this.scene} isDisabled={isLoading} />;
       case 'demo-02':
         return (
           <Arrows
+            isDisabled={isLoading}
             onNext={() => this.scene.getDemo().twist(true)}
             onPrev={() => this.scene.getDemo().twist()}
           />

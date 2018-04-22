@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export default class Colors extends React.Component {
   state = {
@@ -14,6 +14,7 @@ export default class Colors extends React.Component {
 
   render() {
     const { selected } = this.state;
+    const { isDisabled } = this.props;
     const colors = [
       { hex: '#f44737', id: 0, threeColor: 0xc82f00 },
       { hex: '#512DA8', id: 1, threeColor: 0x48007a },
@@ -23,7 +24,7 @@ export default class Colors extends React.Component {
     ];
 
     return (
-      <Container>
+      <Container isDisabled={isDisabled}>
         {
           colors.map(({ id, hex, threeColor }) => (
             <Color onClick={() => this.handleClick(id, threeColor)}
@@ -45,6 +46,11 @@ const Container = styled.div`
   left: 0;
   width: 100vw;
   justify-content: space-evenly;
+  
+  ${({ isDisabled }) => isDisabled && css`
+    pointer-events: none;
+    opacity: 0.2;
+  `}
 `;
 
 const Color = styled.div`

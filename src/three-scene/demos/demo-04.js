@@ -16,7 +16,7 @@ export default class Demo {
     this.sensitivity = 30;
 
     setTimeout(() => {
-      this.sensitivity = 30;
+      this.sensitivity = 15;
     }, 5000);
 
     this.load();
@@ -149,7 +149,7 @@ export default class Demo {
           const average = values / array.length;
 
           if (average > this.sensitivity) {
-            this.trigger(average / 3);
+            this.trigger(average / 2);
           }
         }
       }

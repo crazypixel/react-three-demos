@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export default class Arrows extends React.Component {
   componentDidMount() {
@@ -20,9 +20,10 @@ export default class Arrows extends React.Component {
 
   render() {
     const { onNext, onPrev } = this.props;
+    const { isDisabled } = this.props;
 
     return (
-      <Container>
+      <Container isDisabled={isDisabled}>
         <Btn
           onMouseDown={() => this.triggerAction(onPrev)}
           onTouchStart={() => this.triggerAction(onPrev)}
@@ -49,6 +50,11 @@ const Container = styled.div`
   display: flex;
   box-sizing: border-box;
   padding: 0 5px;
+  
+  ${({ isDisabled }) => isDisabled && css`
+    pointer-events: none;
+    opacity: 0.2;
+  `}
 `;
 
 const Btn = styled.div`
