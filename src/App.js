@@ -11,7 +11,7 @@ import Arrows from './components/arrows';
 class App extends Component {
   state = {
     demoId: null,
-    loading: false
+    isLoading: false
   };
 
   scene = new Scene();
@@ -67,17 +67,21 @@ class App extends Component {
   }
 
   toggleLoading = () => {
-    this.setState({ loading: !this.state.loading });
+    this.setState({ isLoading: !this.state.isLoading });
   };
 
   render() {
-    const { loading } = this.state;
+    const { isLoading } = this.state;
 
     return (
       <div>
-        <Navigation onLoad={this.handleLoad} clearDemo={this.clearDemo} />
+        <Navigation
+          onLoad={this.handleLoad}
+          clearDemo={this.clearDemo}
+          isLoading={isLoading}
+        />
 
-        {loading && <Loader />}
+        {isLoading && <Loader />}
 
         {this.demoInterface()}
 

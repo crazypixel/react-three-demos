@@ -3,19 +3,19 @@ import styled from 'styled-components';
 
 export default class Navigation extends Component {
   state = {
-    visible: true
+    isVisible: true
   };
 
   backButton() {
     return (
-      <BackButton onClick={() => this.setState({ visible: true }, this.props.clearDemo)}>
+      <BackButton onClick={() => this.setState({ isVisible: true }, this.props.clearDemo)}>
         <BackArrow />
       </BackButton>
     );
   }
 
   loadDemo(id) {
-    this.setState({ visible: false }, () => {
+    this.setState({ isVisible: false }, () => {
       this.props.onLoad(id);
     });
   }
@@ -31,6 +31,7 @@ export default class Navigation extends Component {
     return (
       <Container>
         <Logo />
+
         <div>
           {
             links.map(({ label, id }) => (
@@ -38,6 +39,7 @@ export default class Navigation extends Component {
             ))
           }
         </div>
+
         <BottomLinks>
           <BottomLink href="mailto:crazypixel@gmail.com">email</BottomLink>
           <BottomLink href="https://github.com/crazypixel">github</BottomLink>
@@ -47,7 +49,14 @@ export default class Navigation extends Component {
   }
 
   render() {
-    return this.state.visible ? this.menu() : this.backButton();
+    const { isLoading } = this.props;
+    const { isVisible } = this.state;
+
+    if (isLoading) {
+      return null;
+    }
+
+    return isVisible ? this.menu() : this.backButton();
   }
 }
 

@@ -143,7 +143,7 @@ export default class Demo {
           const average = values / array.length;
 
           if (average > 15) {
-            this.trigger(average / 2);
+            this.trigger(average / 4);
           }
         }
       }
