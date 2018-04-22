@@ -31,11 +31,17 @@ export default class Navigation extends Component {
     return (
       <Container>
         <Logo />
-        {
-          links.map(({ label, id }) => (
-            <MenuItem key={id} onClick={() => this.loadDemo(id)}>{label}<Arrow /></MenuItem>
-          ))
-        }
+        <div>
+          {
+            links.map(({ label, id }) => (
+              <MenuItem key={id} onClick={() => this.loadDemo(id)}>{label}<Arrow /></MenuItem>
+            ))
+          }
+        </div>
+        <BottomLinks>
+          <BottomLink href="mailto:crazypixel@gmail.com">email</BottomLink>
+          <BottomLink href="https://github.com/crazypixel">github</BottomLink>
+        </BottomLinks>
       </Container>
     );
   }
@@ -57,6 +63,7 @@ const Container = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  justify-content: space-between;
 `;
 
 const Logo = styled.div`
@@ -64,7 +71,6 @@ const Logo = styled.div`
   height: 50px;
   background: url(${require('../assets/logo.svg')}) no-repeat;
   background-size: contain;
-  margin-bottom: 50px;
 `;
 
 const MenuItem = styled.div`
@@ -103,4 +109,17 @@ const BackButton = styled.div`
 
 const BackArrow = Arrow.extend`
   transform: rotate(135deg);
+`;
+
+const BottomLinks = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const BottomLink = styled.a`
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: #ff4545;
+  text-decoration: none;
 `;
