@@ -58,7 +58,7 @@ class App extends Component {
       case 'demo-04':
         return (
           <Info>
-            Add velocity to objects using sound
+            Add velocity to objects. Make a sound!
           </Info>
         );
       default:
