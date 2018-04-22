@@ -28,8 +28,7 @@ export default class Scene {
     this.controls.maxPolarAngle = Math.PI / 2;
     this.controls.enableZoom = false;
 
-    this.camera.position.z = 50;
-    this.camera.position.y = 2;
+    this.resetCameraPos();
 
     // add three-scene lights
     const hemisphereLights = new THREE.HemisphereLight(0xffffff, 0xe0e0e0, 0.3);
@@ -43,6 +42,13 @@ export default class Scene {
     window.addEventListener('resize', this.handleResize, false);
 
     this.animate();
+  }
+
+  resetCameraPos() {
+    this.controls.reset();
+    this.camera.position.z = 50;
+    this.camera.position.y = 2;
+    this.controls.update();
   }
 
   handleResize = () => {
@@ -63,6 +69,8 @@ export default class Scene {
   }
 
   loadDemo(id) {
+    this.resetCameraPos();
+
     const cfg = {
       scene: this.scene,
       camera: this.camera,
